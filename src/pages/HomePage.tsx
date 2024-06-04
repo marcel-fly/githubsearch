@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { searchUsers } from "../api/github";
 import {
@@ -20,7 +20,7 @@ interface User {
 }
 
 const HomePage = () => {
-  const [username, setUsername] = useState("");
+  const inputRef = useRef<HTMLInputElement>();
   const [searchedUserName, setSearchedUserName] = useState("");
   const [selectedLoginForRepoList, setSelectedLoginForRepoList] = useState<
     string | false
@@ -28,16 +28,18 @@ const HomePage = () => {
 
   const { data, refetch, isFetching, isError } = useQuery(
     "searchUsers",
-    () => searchUsers(username),
+    () => searchUsers(inputRef.current?.value ?? ''),
     { enabled: false },
   );
 
   const fetchedUsers: User[] = data?.data.items;
 
   const handleSearch = () => {
-    if (username === "") return;
-    setSearchedUserName(username);
+    if(inputRef.current){
+    if(!inputRef.current.value) return;
+    setSearchedUserName(inputRef.current.value);
     refetch();
+    }
   };
 
   const handleAccordionChange = (login: string) => (isExpanded: boolean) => {
@@ -46,21 +48,23 @@ const HomePage = () => {
 
   return (
     <Box sx={{ width: "100%", mt: 2 }}>
-      <TextField
-        placeholder={"Enter username"}
-        variant="outlined"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        fullWidth
-      />
-      <Button
-        variant="contained"
-        onClick={handleSearch}
-        fullWidth
-        disabled={isFetching}
-      >
-        {isFetching ? <CircularProgress size={25} /> : "Search"}
-      </Button>
+        <TextField
+          name="username"
+          placeholder={"Enter username"}
+          variant="outlined"
+          type="text"
+          fullWidth
+          inputRef={inputRef}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          onClick={handleSearch}
+          fullWidth
+          disabled={isFetching}
+        >
+          {isFetching ? <CircularProgress size={25} /> : "Search"}
+        </Button>
       {searchedUserName && (
         <Typography
           color={"grey"}
