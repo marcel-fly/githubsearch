@@ -1,30 +1,105 @@
-# React + TypeScript + Vite
+# GitHub Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React application that allows users to search for GitHub users and view their repositories. It uses the GitHub API to fetch user data and display it in a user-friendly interface. The project is built with React, TypeScript, and Vite, and it uses React Query for data fetching and Axios for making HTTP requests.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Dependencies](#dependencies)
+- [Dev Dependencies](#dev-dependencies)
+- [Testing](#testing)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started with this project, follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the repository:**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
+   ```bash
+   git clone https://github.com/yourusername/github-search.git
+   cd github-search
+   ```
+
+2. **Install the dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+This will start the Vite development server and you can open your browser to [http://localhost:3000](http://localhost:3000) to see the application.
+
+## Available Scripts
+
+In the project directory, you can run the following scripts:
+
+### `npm run dev`
+
+Starts the Vite development server.
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder. It also runs TypeScript compiler to check for type errors.
+
+### `npm run lint`
+
+Runs ESLint to check for linting errors in your code. It enforces code quality and consistency.
+
+### `npm run preview`
+
+Runs the Vite preview server to preview the production build.
+
+### `npm run test`
+
+Runs the Jest test runner to execute all tests.
+
+## Dependencies
+
+- **@emotion/react**: For writing css styles with emotion.
+- **@emotion/styled**: For writing styled components with emotion.
+- **@mui/icons-material**: Material UI icons.
+- **@mui/material**: Material UI components.
+- **@tanstack/react-query**: For fetching, caching, and updating asynchronous data in React.
+- **@testing-library/react**: For testing React components.
+- **@testing-library/user-event**: For simulating user events in tests.
+- **axios**: For making HTTP requests.
+- **react**: For building user interfaces.
+- **react-dom**: For rendering React components.
+- **react-query**: For managing server state in React.
+
+## Dev Dependencies
+
+- **@testing-library/jest-dom**: Custom jest matchers to test the state of the DOM.
+- **@types/jest**: TypeScript type definitions for Jest.
+- **@types/react**: TypeScript type definitions for React.
+- **@types/react-dom**: TypeScript type definitions for React DOM.
+- **@typescript-eslint/eslint-plugin**: ESLint plugin for TypeScript.
+- **@typescript-eslint/parser**: TypeScript parser for ESLint.
+- **@vitejs/plugin-react**: Vite plugin for React.
+- **eslint**: For identifying and reporting on patterns in JavaScript.
+- **eslint-plugin-react-hooks**: ESLint rules for React Hooks.
+- **eslint-plugin-react-refresh**: ESLint plugin for React Refresh.
+- **jest**: JavaScript testing framework.
+- **jest-environment-jsdom**: Jest environment for testing with JSDOM.
+- **prettier**: Code formatter.
+- **ts-jest**: Jest transformer for TypeScript.
+- **typescript**: TypeScript language.
+- **vite**: Next Generation Frontend Tooling.
+
+## Testing
+
+This project uses Jest and React Testing Library for testing.
+
+### Running Tests
+
+To run the tests, use the following command:
+
+```bash
+npm run test
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
